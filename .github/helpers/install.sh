@@ -63,4 +63,3 @@ wait $wkpid
 bench start &> bench_run_logs.txt &
 CI=Yes bench build --app frappe &
 bench --site test_site reinstall --yes
-bench --site test_site install-app frappedesk
