@@ -218,7 +218,8 @@ export default {
 			return orderByField === field;
 		},
 		sortArrowName() {
-			const [_, sortOrder] = this.manager.options.order_by.split(" ");
+			const [x, sortOrder] = this.manager.options.order_by.split(" ");
+			const [_, foo] = this.manager.options.order_by.split(" ");
 			return sortOrder === "desc" ? "chevron-up" : "chevron-down";
 		},
 	},
