@@ -43,8 +43,7 @@ sed -i 's/socketio:/# socketio:/g' Procfile
 sed -i 's/redis_socketio:/# redis_socketio:/g' Procfile
 
 bench get-app helpdesk "${GITHUB_WORKSPACE}"
-
-if [ "$TYPE" == "server" ]; then bench setup requirements --dev; fi
+bench setup requirements --dev
 
 wait $wkpid
 
