@@ -1,9 +1,6 @@
 <template>
 	<div class="h-full">
-		<div
-			v-if="isLoading"
-			class="flex h-full w-full justify-center align-middle"
-		>
+		<div v-if="isLoading" class="flex h-full w-full justify-center align-middle">
 			<LoadingIndicator class="w-8 text-blue-600" />
 		</div>
 		<div v-else class="h-full">
