@@ -29,13 +29,13 @@ concurrency:
 
 jobs:
   test:
+    name: Python Unit Tests
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     strategy:
       fail-fast: false
 
-    name: Python Unit Tests
     steps:
       - name: Clone
         uses: actions/checkout@v2
