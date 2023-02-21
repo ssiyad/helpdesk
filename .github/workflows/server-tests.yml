@@ -38,9 +38,6 @@ jobs:
     strategy:
       fail-fast: false
 
-      matrix:
-        container: [1, 2, 3, 4]
-
     name: Python Unit Tests
 
     services:
@@ -122,7 +119,7 @@ jobs:
           FRAPPE_BRANCH: ${{ github.event.inputs.branch }}
 
       - name: Run Tests
-        run: 'cd ~/frappe-bench/ && bench --site test_site run-parallel-tests --app frappedesk --with-coverage --total-builds 4 --build-number ${{ matrix.container }}'
+        run: 'cd ~/frappe-bench/ && bench --site test_site run-parallel-tests --app frappedesk --with-coverage --total-builds 4'
         env:
           TYPE: server
           CI_BUILD_ID: ${{ github.run_id }}
@@ -131,7 +128,7 @@ jobs:
       - name: Upload coverage data
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-${{ matrix.container }}
+          name: coverage
           path: /home/runner/frappe-bench/sites/coverage.xml
 
   coverage:
