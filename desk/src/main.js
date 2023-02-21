@@ -18,6 +18,8 @@ import { socketio_port } from "../../../../sites/common_site_config.json"
 
 let app = createApp(App)
 
+const _ = 1
+
 app.directive("on-outside-click", onOutsideClickDirective)
 app.use(router)
 app.use(FrappeUI, {
