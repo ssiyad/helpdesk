@@ -2,17 +2,14 @@ name: Server
 
 on:
   pull_request:
+    branches:
+      - main
     paths-ignore:
       - '**.js'
       - '**.css'
       - '**.md'
       - '**.html'
       - '**.csv'
-  push:
-    branches: [ develop ]
-    paths-ignore:
-      - '**.js'
-      - '**.md'
   workflow_dispatch:
     inputs:
       user:
@@ -39,16 +36,6 @@ jobs:
       fail-fast: false
 
     name: Python Unit Tests
-
-    services:
-      mysql:
-        image: mariadb:10.6
-        env:
-          MARIADB_ROOT_PASSWORD: 'root'
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
-
     steps:
       - name: Clone
         uses: actions/checkout@v2
@@ -110,6 +97,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
+      - name: Setup MariaDB
+        uses: getong/mariadb-action@v1.1
+        with:
+          collation server: 'utf8mb4_unicode_ci'
+          mariadb version: '10.6'
+          mysql root password: 'root'
 
       - name: Install
         run: bash ${GITHUB_WORKSPACE}/.github/helpers/install.sh
